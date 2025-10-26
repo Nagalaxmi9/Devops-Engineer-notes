@@ -36,7 +36,10 @@ image
 The above picture, clearly indicates that Docker Deamon is brain of Docker. If Docker Deamon is killed, stops working for some reasons, Docker is brain dead :p (sarcasm intended).
 
 Docker LifeCycle
-We can use the above Image as reference to understand the lifecycle of Docker.
+We can use the above Image as reference to understand the lifecycle of Docker
+dockerfile prepartaion
+docker image building
+docker container setting up
 
 There are three important things,
 
@@ -150,6 +153,9 @@ EXPOSE 8080
 
 15. How can you remove unused Docker objects?
 docker system prune
+
+16. how to login to dockerhub registry
+by using docker login
 
 16. What is the difference between docker run and docker start?
 docker run → creates and starts a new container.
@@ -449,9 +455,19 @@ lifecycle of docker
 write dockerfile
 create image
 execute image and run container
-create create
 
+Dockerfile for python
+FROM Python(see for installing python if you are using base image pyhton no need to install its dependencies or install)
 
+WORKDIR /app
+COPY requirements.txt /app/ (copy requirements to present directory)
+COPY devops /app/           (copy sourcecode to present directory)
+RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 8000
+ENTRYPOINT["python"]
+CMD ["app.py"]
+
+Dockerfile for nginix
 
 
 
