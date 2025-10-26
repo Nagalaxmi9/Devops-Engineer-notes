@@ -468,6 +468,13 @@ ENTRYPOINT["python"]
 CMD ["app.py"]
 
 Dockerfile for nginix
+FROM nginix
+WORKDIR /app
+COPY /html /usr/share/nginix/html
+EXPOSE 80
+ENTRYPOINT ["nginix"]
+CMD["-g","daemon;"]
+
 
 
 
