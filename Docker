@@ -475,7 +475,23 @@ EXPOSE 80
 ENTRYPOINT ["nginix"]
 CMD["-g","daemon;"]
 
-Docker Networking
+Docker Networking(sir class detailed explaination)
+Bridge network
+Its is used to connect to host/connect to containers/disconnect from one container to another conatiner
+when you create container and host(EC2/VM) by default networking will be allocated and both the network ip address are different
+so ip address are different container cannot talk to host so when networking concept introduced when we create container automatically veth(0) docker 0
+network will be craeted which connects container with the host. both conatiner has same veth(docker 0) can they can also connect each other
+How to isolate container from each other?
+docker allow to create custom network that is when you craete container create your own netwotk that is docker(1) or anything which can only talk to your host
+but cannot talk to another container.
+so commands what you are using is for custom network bridge network by defualt connects to host and the containers
+docker network ls - list of networks
+docker network rm network name
+if you want network connectivity ping "ip address"
+Host network 
+when container is created it is binded to host network so both are in same network they can access each other but since both are in same network hackers can esaily 
+accessible
+Overlay its is used for compliacted service such as docker swarm or kubernetes
 
 
 
