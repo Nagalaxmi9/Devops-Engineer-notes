@@ -428,6 +428,33 @@ Docker multi stage
 it used to  reduce the docker image size and give more security in production as there are less command and packages on the final Image
 in final image only binary and run time will be there this image Is called distroless image
 before multi stage image size is 64mb after that its 1 mb
+# ---------- Stage 1: Build static website ----------
+FROM node:18 AS builder
+
+# Set working directory
+WORKDIR /app
+
+# Copy website source code (HTML, CSS, JS, etc.)
+COPY . .
+
+# Install dependencies and build the site
+RUN npm install && npm run build
+
+
+# ---------- Stage 2: Serve using Nginx ----------
+FROM nginx:latest
+
+# Remove default nginx page
+RUN rm -rf /usr/share/nginx/html/*
+
+# Copy built files from builder stage to nginx html folder
+COPY --from=builder /app/dist /usr/share/nginx/html
+
+# Expose port 80
+EXPOSE 80
+
+# Start Nginx in foreground
+CMD ["nginx", "-g", "daemon off;"]
 
 Docker networking 
 it used to connect one container to another container/ block one container from another container
