@@ -520,6 +520,15 @@ when container is created it is binded to host network so both are in same netwo
 accessible
 Overlay its is used for compliacted service such as docker swarm or kubernetes
 
+Each instruction in your Dockerfile (like RUN, COPY, ADD) creates a new layer.
+When Docker builds an image:
+
+Each layer is cached.
+
+If a layer changes, Docker rebuilds only that layer and the ones after it.
+
+So, fewer and smaller layers = faster builds and smaller images.
+
 
 
 
