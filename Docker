@@ -1,3 +1,17 @@
+When writing a Dockerfile, I always follow best practices to ensure the image is lightweight, secure, and fast to build.
+
+First, I start with a small and official base image, like python:3.11-slim or alpine, instead of using latest.
+
+I set a working directory and use a .dockerignore file to exclude unnecessary files like .git, node_modules, and logs — this helps reduce the image size.
+
+I copy only required files and install dependencies using RUN commands, combining them to reduce layers and cleaning up cache afterward.
+
+I also prefer multi-stage builds — especially for Node.js or Java projects — so the final image only has runtime files, not build tools.
+
+For security, I make sure the container doesn’t run as root — I create a non-root user.
+
+I define environment variables using ENV, expose the required port using EXPOSE, and define the container’s startup command using ENTRYPOINT or CMD.
+
 why docker is lightweight
 because they have light base os and share a part of os from kernel 
 they have mim system libraries to isolate container from each other for security
